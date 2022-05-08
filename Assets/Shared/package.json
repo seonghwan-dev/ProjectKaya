@@ -1,0 +1,11 @@
+{
+  "name": "com.unity.korea.kaya",
+  "version": "1.0.0",
+  "displayName": "Kaya",
+  "description": "Kaya shared assets",
+  "unity": "2019.1",
+  "author": {
+    "name": "Unity",
+    "url": "https://www.unity3d.com"
+  }
+}
