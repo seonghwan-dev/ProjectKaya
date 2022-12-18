@@ -55,7 +55,7 @@ public class ReadmeEditor : Editor {
 		}
 	}
 	
-	[MenuItem("Help/Project Kaya README", false, 1800)]
+	[MenuItem("Kaya/Help/Project Kaya README", false, 1800)]
 	static Readme SelectReadme()
 	{
 		Object readmeObject = EditorGUIUtility.Load("Readme/ProjectKaya.asset");
@@ -64,7 +64,7 @@ public class ReadmeEditor : Editor {
 		return (Readme)readmeObject;
 	}
 	
-	[MenuItem("Help/URP CustomPass README", false, 1801)]
+	[MenuItem("Kaya/Help/URP CustomPass README", false, 1801)]
 	static Readme SelectCustomPassReadme()
 	{
 		Object readmeObject = EditorGUIUtility.Load("Readme/URP CustomPass.asset");
@@ -73,7 +73,7 @@ public class ReadmeEditor : Editor {
 		return (Readme)readmeObject;
 	}
 	
-	[MenuItem("Help/Lobby Scene README", false, 1802)]
+	[MenuItem("Kaya/Help/Lobby Scene README", false, 1802)]
 	static Readme SelectUTKTemplateReadme()
 	{
 		Object readmeObject = EditorGUIUtility.Load("Readme/Lobby Scene.asset");
@@ -135,7 +135,12 @@ public class ReadmeEditor : Editor {
 					else if (section.url.Contains("openscene://"))
 					{
 						bool isDirty = false;
-						string sceneName = section.url.Replace("openscene://", "");
+						string sceneInfo = section.url.Replace("openscene://", "");
+						if (!sceneInfo.Contains(".unity"))
+						{
+							string path = AssetDatabase.GUIDToAssetPath(sceneInfo);
+							sceneInfo = path;
+						}
 						var scenes = new List<Scene>();
 						int openedSceneCount = SceneManager.sceneCount;
 						for (int i = 0; i < openedSceneCount; i++)
@@ -154,7 +159,7 @@ public class ReadmeEditor : Editor {
 							EditorSceneManager.SaveModifiedScenesIfUserWantsTo(scenes.ToArray());
 						}
 						
-						EditorSceneManager.OpenScene(sceneName);
+						EditorSceneManager.OpenScene(sceneInfo);
 					}
 				}
 			}
